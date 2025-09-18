@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Liquid Glass Cursor Test</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        cursor: auto;
+      }
+
+      .content {
+        padding: 40px;
+        color: white;
+        text-align: center;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        padding: 30px;
+        margin: 20px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <h1>🪟 Liquid Glass Cursor Test</h1>
+      <div class="card">
+        <h2>커서 효과 테스트</h2>
+        <p>마우스를 움직여보세요!</p>
+      </div>
+    </div>
+
+    <script>
+      // 인라인으로 커서 효과 구현
+      function createLiquidGlassCursor(options = {}) {
+        const {
+          size = 100,
+          blur = 20,
+          intensity = 0.1,
+          color = "rgba(255, 255, 255, 0.1)",
+          duration = 300,
+          zIndex = 9999,
+        } = options;
+
+        const finalColor = color.replace(/[\d.]+\)$/, `${intensity})`);
+
+        const cursor = document.createElement("div");
+        cursor.style.cssText = `
+                position: fixed;
+                width: ${size}px;
+                height: ${size}px;
+                border-radius: 50%;
+                background: ${finalColor};
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                pointer-events: none;
+                z-index: ${zIndex};
+                opacity: 0;
+                will-change: left, top, opacity;
+            `;
+
+        document.body.appendChild(cursor);
+
+        const handleMouseMove = (e) => {
+          cursor.style.left = e.clientX - size / 2 + "px";
+          cursor.style.top = e.clientY - size / 2 + "px";
+          cursor.style.opacity = "1";
+        };
+
+        const handleMouseLeave = () => {
+          cursor.style.opacity = "0";
+        };
+
+        document.addEventListener("mousemove", handleMouseMove);
+        document.addEventListener("mouseleave", handleMouseLeave);
+
+        return () => {
+          document.removeEventListener("mousemove", handleMouseMove);
+          document.removeEventListener("mouseleave", handleMouseLeave);
+          document.body.removeChild(cursor);
+        };
+      }
+
+      // 커서 효과 시작
+      console.log("커서 효과 시작");
+      const cleanup = createLiquidGlassCursor({
+        size: 120,
+        blur: 25,
+        intensity: 0.15,
+        color: "rgba(255, 255, 255, 0.1)",
+        duration: 5,
+      });
+      console.log("커서 효과 설정 완료:", cleanup);
+    </script>
+  </body>
+</html>
