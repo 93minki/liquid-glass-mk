@@ -1,7 +1,7 @@
 // src/App.tsx
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { LiquidGlass } from "./components/LiquidGlass";
-import { createLiquidGlassCursor } from "./utils/liquidGlassCursor";
+import { useLiquidGlassCursor } from "./hooks/useLiquidGlassCursor";
 
 function App() {
   const ref = useRef<HTMLDivElement>(null);
@@ -14,17 +14,11 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    const cleanup = createLiquidGlassCursor({
-      size: 120,
-      blur: 1,
-      intensity: 0.5,
-      color: "rgba(255, 255, 255, 0.3)",
-    });
-
-    // 컴포넌트 언마운트 시 정리
-    return cleanup;
-  }, []);
+  useLiquidGlassCursor({
+    size: 120,
+    blur: 1,
+    intensity: 0.5,
+  });
 
   return (
     <div
