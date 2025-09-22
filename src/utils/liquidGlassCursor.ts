@@ -3,7 +3,6 @@ export interface LiquidGlassCursorOptions {
   blur?: number;
   intensity?: number;
   color?: string;
-  duration?: number;
   zIndex?: number;
 }
 
@@ -12,7 +11,6 @@ export const createLiquidGlassCursor = ({
   blur = 20,
   intensity = 0.1,
   color = "rgba(255, 255, 255, 0.1)",
-  duration = 300,
   zIndex = 9999,
 }: LiquidGlassCursorOptions) => {
   // intensity를 color의 alpha 값으로 적용
