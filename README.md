@@ -117,35 +117,6 @@ function App() {
 }
 ```
 
-#### Conditional Cursor Effect
-
-```tsx
-import { useLiquidGlassCursor } from "liquid-glass-mk";
-import { useState } from "react";
-
-function App() {
-  const [enableCursor, setEnableCursor] = useState(false);
-
-  useLiquidGlassCursor(
-    enableCursor
-      ? {
-          size: 100,
-          blur: 10,
-          intensity: 0.2,
-        }
-      : undefined
-  );
-
-  return (
-    <div>
-      <button onClick={() => setEnableCursor(!enableCursor)}>
-        Toggle Cursor Effect
-      </button>
-    </div>
-  );
-}
-```
-
 ## API Reference
 
 ### LiquidGlass Props
@@ -184,7 +155,6 @@ import { LiquidGlass, useLiquidGlassCursor } from "liquid-glass-mk";
 import { useEffect } from "react";
 
 function App() {
-  // Enable cursor effect
   useLiquidGlassCursor({
     size: 80,
     blur: 10,
