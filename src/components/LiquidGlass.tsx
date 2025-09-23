@@ -1,13 +1,19 @@
-// src/components/LiquidGlass.tsx
 import { forwardRef } from "react";
-import { getBorderRadius, getIntensity } from "../utils/liquidGlassUtils";
+import "../styles/liquid-glass.css";
+import {
+  getBorderRadius,
+  getIntensity,
+  getSaturate,
+} from "../utils/liquidGlassUtils";
 
 interface LiquidGlassProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
   intensity?: "light" | "medium" | "strong" | number;
+  saturate?: number | string;
+  borderIntensity?: "light" | "medium" | "strong" | number;
   blur?: number;
-  size?: "sm" | "md" | "lg";
+  borderRadius?: number | string | "sm" | "md" | "lg";
 }
 
 export const LiquidGlass = forwardRef<HTMLDivElement, LiquidGlassProps>(
@@ -16,23 +22,30 @@ export const LiquidGlass = forwardRef<HTMLDivElement, LiquidGlassProps>(
       children,
       className = "",
       intensity = "medium",
-      blur = 10,
-      size = "md",
+      blur = 2,
+      borderRadius = "md",
+      saturate = 1.8,
+      borderIntensity = 0.8,
+      style: customStyle,
       ...restProps
     },
     ref
   ) => {
-    const style = {
-      backdropFilter: `blur(${blur}px)`,
-      WebkitBackdropFilter: `blur(${blur}px)`,
-      background: `rgba(255,255,255,${getIntensity(intensity)})`,
-      border: `1px solid rgba(255,255,255,${getIntensity(intensity)})`,
-      borderRadius: getBorderRadius(size),
-      transition: "all 0.3s ease",
-    };
+    const cssVars = {
+      "--blur": `${blur}px`,
+      "--intensity": getIntensity(intensity),
+      "--saturate": getSaturate(saturate),
+      "--border-intensity": getIntensity(borderIntensity),
+      "--border-radius": getBorderRadius(borderRadius),
+    } as React.CSSProperties;
 
     return (
-      <div ref={ref} className={`${className}`} style={style} {...restProps}>
+      <div
+        ref={ref}
+        className={`glass ${className}`}
+        style={{ ...cssVars, ...customStyle }}
+        {...restProps}
+      >
         {children}
       </div>
     );

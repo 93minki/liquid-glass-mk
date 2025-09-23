@@ -26,7 +26,7 @@ function App() {
         margin: 0,
         padding: "20px",
         background:
-          "url('https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=1920&h=1080&fit=crop') center/cover",
+          "url('https://images.unsplash.com/photo-1539635278303-d4002c07eae3?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NDk1Njc4NTB8&ixlib=rb-4.1.0&q=85') center/cover no-repeat",
         minHeight: "100vh",
         fontFamily:
           "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
@@ -52,6 +52,13 @@ function App() {
           >
             <h2>기본 효과</h2>
             <p>이것은 기본 liquid glass 효과입니다.</p>
+          </div>
+        </LiquidGlass>
+
+        <LiquidGlass intensity={0.1} blur={5} saturate={1.15}>
+          <div className="p-5">
+            <h2>테스트</h2>
+            <p>뉴 테스트!!</p>
           </div>
         </LiquidGlass>
 
