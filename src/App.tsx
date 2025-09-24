@@ -101,6 +101,7 @@ function App() {
           <LiquidGlass
             glassRadius={"2rem"}
             className="flex flex-col text-white p-4 gap-8 h-full justify-between"
+            glassBg="255,0,0"
           >
             <div className="flex flex-col">
               <span className="text-xl font-medium">San Francisco</span>

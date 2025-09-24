@@ -1,7 +1,9 @@
 .liquid-glass {
   position: relative;
   border-radius: var(--glass-radius);
-  background: rgba(var(--glass-bg)), var(--glass-alpha);
+  background: rgba(var(--glass-bg), var(--glass-alpha));
+  -webkit-backdrop-filter: blur(var(--glass-blur))
+    saturate(var(--glass-saturate)) brightness(var(--glass-brightness));
   backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate))
     brightness(var(--glass-brightness));
   border: var(--glass-border) solid rgba(255, 255, 255, 0.3);
