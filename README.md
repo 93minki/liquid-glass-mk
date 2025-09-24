@@ -44,11 +44,13 @@ import { LiquidGlass } from "liquid-glass-mk";
 function App() {
   return (
     <LiquidGlass
-      intensity="strong"
-      blur={15}
-      borderRadius="lg"
-      saturate="180%"
-      borderIntensity={0.9}
+      glassRadius="2rem"
+      glassBlur={15}
+      glassSaturate="180%"
+      glassBrightness={1.2}
+      glassBorder={2}
+      glassAlpha={0.2}
+      glassBg="255, 255, 255"
       className="p-6 text-white"
       style={{ margin: "20px" }}
     >
@@ -67,8 +69,9 @@ import { LiquidGlass } from "liquid-glass-mk";
 function App() {
   return (
     <LiquidGlass
-      intensity={0.3}
-      blur={20}
+      glassAlpha={0.3}
+      glassBlur={20}
+      glassRadius="1rem"
       className="bg-red-500 text-white p-4 rounded-lg shadow-lg"
       onClick={() => console.log("Clicked!")}
     >
@@ -121,21 +124,23 @@ function App() {
 
 ### LiquidGlass Props
 
-| Prop              | Type                                        | Default    | Description                                     |
-| ----------------- | ------------------------------------------- | ---------- | ----------------------------------------------- |
-| `children`        | `React.ReactNode`                           | -          | Content to display inside the glass effect      |
-| `intensity`       | `'light' \| 'medium' \| 'strong' \| number` | `'medium'` | Glass effect intensity (0-1 for number)         |
-| `blur`            | `number`                                    | `2`        | Backdrop blur amount in pixels                  |
-| `borderRadius`    | `number \| string \| 'sm' \| 'md' \| 'lg'`  | `'md'`     | Border radius (px, rem, or keyword)             |
-| `saturate`        | `number \| string`                          | `1.8`      | Color saturation (1.8 or "180%")                |
-| `borderIntensity` | `'light' \| 'medium' \| 'strong' \| number` | `0.8`      | Border opacity intensity                        |
-| `className`       | `string`                                    | -          | Additional CSS classes (Tailwind CSS supported) |
-| `style`           | `React.CSSProperties`                       | -          | Custom inline styles                            |
-| `ref`             | `React.Ref<HTMLDivElement>`                 | -          | Ref to the glass element                        |
-| `onClick`         | `(event: MouseEvent) => void`               | -          | Click handler                                   |
-| `onMouseEnter`    | `(event: MouseEvent) => void`               | -          | Mouse enter handler                             |
-| `onMouseLeave`    | `(event: MouseEvent) => void`               | -          | Mouse leave handler                             |
-| ...               | `React.HTMLAttributes<HTMLDivElement>`      | -          | All standard HTML div attributes                |
+| Prop              | Type                                   | Default           | Description                                     |
+| ----------------- | -------------------------------------- | ----------------- | ----------------------------------------------- |
+| `children`        | `React.ReactNode`                      | -                 | Content to display inside the glass effect      |
+| `glassRadius`     | `number \| string`                     | `"md"`            | Border radius (px, rem, em, vh, vw, %)          |
+| `glassBg`         | `string`                               | `"255, 255, 255"` | RGB background color (format: "r,g,b")          |
+| `glassAlpha`      | `number`                               | `0.16`            | Background opacity (0-1)                        |
+| `glassBlur`       | `number \| string`                     | `2`               | Backdrop blur amount (px, rem, em, vh, vw)      |
+| `glassSaturate`   | `number \| string`                     | `1.8`             | Color saturation (number or "180%")             |
+| `glassBrightness` | `number`                               | `1.05`            | Color brightness multiplier                     |
+| `glassBorder`     | `number \| string`                     | `1`               | Border width (px, rem, em, vh, vw)              |
+| `className`       | `string`                               | -                 | Additional CSS classes (Tailwind CSS supported) |
+| `style`           | `React.CSSProperties`                  | -                 | Custom inline styles                            |
+| `ref`             | `React.Ref<HTMLDivElement>`            | -                 | Ref to the glass element                        |
+| `onClick`         | `(event: MouseEvent) => void`          | -                 | Click handler                                   |
+| `onMouseEnter`    | `(event: MouseEvent) => void`          | -                 | Mouse enter handler                             |
+| `onMouseLeave`    | `(event: MouseEvent) => void`          | -                 | Mouse leave handler                             |
+| ...               | `React.HTMLAttributes<HTMLDivElement>` | -                 | All standard HTML div attributes                |
 
 ### useLiquidGlassCursor Options
 
@@ -170,9 +175,10 @@ function App() {
       }}
     >
       <LiquidGlass
-        intensity="strong"
-        blur={25}
-        borderRadius="lg"
+        glassAlpha={0.2}
+        glassBlur={25}
+        glassRadius="2rem"
+        glassSaturate={2.0}
         className="p-8 text-white mb-6"
         onClick={() => console.log("Glass clicked!")}
       >
@@ -181,11 +187,11 @@ function App() {
       </LiquidGlass>
 
       <LiquidGlass
-        intensity={0.2}
-        blur={15}
-        borderRadius="md"
+        glassAlpha={0.2}
+        glassBlur={15}
+        glassRadius="1rem"
+        glassBg="255, 0, 0"
         className="p-6 text-white"
-        style={{ backgroundColor: "rgba(255, 0, 0, 0.1)" }}
       >
         <h2>Custom Styled Glass</h2>
         <p>This glass has custom background color</p>

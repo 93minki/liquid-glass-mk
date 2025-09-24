@@ -1,19 +1,26 @@
 import { forwardRef } from "react";
 import "../styles/liquid-glass.css";
+import { CSSValue, RGBString } from "../types/liquidGlass";
 import {
-  getBorderRadius,
-  getIntensity,
-  getSaturate,
+  getGlassAlpha,
+  getGlassBg,
+  getGlassBlur,
+  getGlassBorder,
+  getGlassBorderRadius,
+  getGlassBrightness,
+  getGlassSaturate,
 } from "../utils/liquidGlassUtils";
 
 interface LiquidGlassProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
-  intensity?: "light" | "medium" | "strong" | number;
-  saturate?: number | string;
-  borderIntensity?: "light" | "medium" | "strong" | number;
-  blur?: number;
-  borderRadius?: number | string | "sm" | "md" | "lg";
+  glassRadius?: CSSValue;
+  glassBg?: RGBString;
+  glassAlpha?: number;
+  glassBlur?: CSSValue;
+  glassSaturate?: number | string;
+  glassBrightness?: number;
+  glassBorder?: CSSValue;
 }
 
 export const LiquidGlass = forwardRef<HTMLDivElement, LiquidGlassProps>(
@@ -21,28 +28,31 @@ export const LiquidGlass = forwardRef<HTMLDivElement, LiquidGlassProps>(
     {
       children,
       className = "",
-      intensity = "medium",
-      blur = 2,
-      borderRadius = "md",
-      saturate = 1.8,
-      borderIntensity = 0.8,
+      glassRadius = "md",
+      glassBg = "255, 255, 255",
+      glassAlpha = 0.16,
+      glassBlur = 2,
+      glassSaturate = 1.8,
+      glassBrightness = 1.05,
+      glassBorder = 1,
       style: customStyle,
       ...restProps
     },
     ref
   ) => {
     const cssVars = {
-      "--blur": `${blur}px`,
-      "--intensity": getIntensity(intensity),
-      "--saturate": getSaturate(saturate),
-      "--border-intensity": getIntensity(borderIntensity),
-      "--border-radius": getBorderRadius(borderRadius),
+      "--glass-radius": getGlassBorderRadius(glassRadius),
+      "--glass-bg": getGlassBg(glassBg),
+      "--glass-alpha": getGlassAlpha(glassAlpha),
+      "--glass-blur": getGlassBlur(glassBlur),
+      "--glass-saturate": getGlassSaturate(glassSaturate),
+      "--glass-brightness": getGlassBrightness(glassBrightness),
+      "--glass-border": getGlassBorder(glassBorder),
     } as React.CSSProperties;
-
     return (
       <div
         ref={ref}
-        className={`glass ${className}`}
+        className={`liquid-glass ${className}`}
         style={{ ...cssVars, ...customStyle }}
         {...restProps}
       >
