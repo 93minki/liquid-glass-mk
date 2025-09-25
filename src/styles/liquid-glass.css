@@ -48,12 +48,3 @@
   pointer-events: none;
   mask-image: radial-gradient(60% 60% at 50% 50%, #000 55%, transparent 70%);
 }
-
-@keyframes floaty {
-  0% {
-    transform: translate3d(-10px, -6px, 0) rotate(0.2deg);
-  }
-  100% {
-    transform: translate3d(10px, 6px, 0) rotate(-0.2deg);
-  }
-}
