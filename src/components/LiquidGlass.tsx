@@ -32,7 +32,7 @@ export const LiquidGlass = forwardRef<HTMLDivElement, LiquidGlassProps>(
       glassBg = "255, 255, 255",
       glassAlpha = 0.16,
       glassBlur = 2,
-      glassSaturate = 1.8,
+      glassSaturate = 1.2,
       glassBrightness = 1.05,
       glassBorder = 1,
       style: customStyle,
